@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../store/helpers/useAppDispatch';
 import {getAbility} from '../../services/getAbility';
@@ -12,13 +12,13 @@ import {ITypesResponse} from "../../interfaces/ITypesResponse";
 import {IAbilitiesResponse} from "../../interfaces/IAbilitiesResponse";
 
 
-const SearchComponent: React.FC = () => {
+const SearchComponent: FC = () => {
     const {search_option = ""} = useParams<{ search_option: string }>();
     const dispatch = useAppDispatch();
     const {pokemonsPaginated} = useAppSelector(state => state.pokemons);
     const {searchResults} = useAppSelector(state => state.pokemons);
 
-    useEffect(() => {
+    useEffect((): void => {
         if (search_option === "name" && pokemonsPaginated.length === 0) {
             dispatch(pokemonActions.loadAllPokemons());
         }
@@ -32,7 +32,6 @@ const SearchComponent: React.FC = () => {
                     const abilityResult: IAbilitiesResponse = await getAbility(searchQuery);
                     console.log(abilityResult);
                     results = abilityResult.pokemon.map(result => {
-                        console.log(result);
                         const urlParts: string[] = result.pokemon.url.split('/');
                         const id: number = +urlParts[urlParts.length - 2];
                         return {id: +id, name: result.pokemon.name};
@@ -48,7 +47,6 @@ const SearchComponent: React.FC = () => {
                     break;
                 default:
                     console.error("No such search option!");
-                    return;
             }
             dispatch(pokemonActions.setSearchResults(results));
         } catch (error) {
@@ -56,7 +54,7 @@ const SearchComponent: React.FC = () => {
         }
     };
 
-    const handleSearch = (query: string) => {
+    const handleSearch = (query: string): void => {
         switch (search_option) {
             case "name":
                 const clearQuery: string = query.trim().toLowerCase();

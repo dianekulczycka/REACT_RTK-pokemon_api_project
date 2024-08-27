@@ -36,7 +36,7 @@ export const formSlice = createSlice({
                 state.form = action.payload;
             })
             .addCase(loadForm.rejected, (state, {error: {message}}) => {
-                console.log(`Failed to load pokemon's form. ${message}`);
+                console.log(`Failed to load pokemons form. ${message}`);
             });
     }
 });

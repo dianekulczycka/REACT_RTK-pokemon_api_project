@@ -1,12 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import SearchComponent from "../components/search/SearchComponent";
 
-const SearchPage = () => {
-    return (
-        <div>
-            <SearchComponent/>
-        </div>
-    );
+const SearchPage: FC = () => {
+    return <SearchComponent/>
 };
 
 export default SearchPage;

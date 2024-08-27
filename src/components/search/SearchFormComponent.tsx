@@ -8,7 +8,7 @@ interface IProps {
 const SearchFormComponent: FC<IProps> = ({search_option, onSearch}) => {
     const [query, setQuery] = useState<string>("");
 
-    const handleSearch = () => {
+    const handleSearch = (): void => {
         onSearch(query);
     };
 

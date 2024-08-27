@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useAppDispatch} from "../../store/helpers/useAppDispatch";
 import {useAppSelector} from "../../store/helpers/useAppSelector";
 import {formActions} from "../../store/slices/formSlice";
 import {useParams} from "react-router-dom";
 
-const SelectedFormComponent = () => {
+const SelectedFormComponent: FC = () => {
     const {id = ""} = useParams<{ id: string }>();
     let dispatch = useAppDispatch();
     let {form} = useAppSelector(state => state.forms);

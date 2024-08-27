@@ -1,12 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import SelectedFormComponent from "../components/forms/SelectedFormComponent";
 
-const FormsPage = () => {
-    return (
-        <div>
-            <SelectedFormComponent/>
-        </div>
-    );
+const FormsPage: FC = () => {
+    return <SelectedFormComponent/>
 };
 
 export default FormsPage;

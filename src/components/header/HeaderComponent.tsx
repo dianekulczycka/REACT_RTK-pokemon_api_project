@@ -4,10 +4,16 @@ import SearchDropdownComponent from "./SearchDropdownComponent/SearchDropdownCom
 
 const HeaderComponent: FC = () => {
     return (
-        <ul className="container d-flex align-items-center m-auto mb-3 w-50 bg-warning">
-            <NavLink className="m-sm-2 btn btn-danger" to="pokemons">All pokemons</NavLink>
-            <NavLink className="m-sm-2 btn btn-danger" to="favourites">Favourite pokemons</NavLink>
-            <SearchDropdownComponent/>
+        <ul className="container d-flex align-items-center m-auto mb-3 w-50 bg-warning list-unstyled">
+            <li>
+                <NavLink className="m-sm-2 btn btn-danger" to="pokemons">All pokemons</NavLink>
+            </li>
+            <li>
+                <NavLink className="m-sm-2 btn btn-danger" to="favourites">Favourite pokemons</NavLink>
+            </li>
+            <li>
+                <SearchDropdownComponent/>
+            </li>
         </ul>
     );
 };

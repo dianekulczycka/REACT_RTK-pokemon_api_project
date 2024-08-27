@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useAppDispatch} from "../../store/helpers/useAppDispatch";
 import {revokeFavourites} from "../../store/slices/favouritesSlice";
 
-const RevokeAllFavouritesBtn = () => {
+const RevokeAllFavouritesBtn: FC = () => {
     const dispatch = useAppDispatch();
     return (
         <button

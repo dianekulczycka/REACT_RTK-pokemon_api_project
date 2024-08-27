@@ -7,11 +7,7 @@ interface IProps {
 }
 
 const SearchResultPokemon: FC<IProps> = ({id, name}) => {
-    return (
-        <NavLink className="m-1 link-danger" to={`/pokemons/${id}`}>
-            {name}
-        </NavLink>
-    );
+    return <NavLink className="m-1 link-danger" to={`/pokemons/${id}`}>{name}</NavLink>
 };
 
 export default SearchResultPokemon;

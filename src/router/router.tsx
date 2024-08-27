@@ -15,10 +15,10 @@ const routes: RouteObject[] = [
         children: [
             {index: true, element: <PokemonsPage/>},
             {path: "pokemons", element: <PokemonsPage/>},
-            {path: "favourites", element: <FavouritePokemonsPage/>},
             {path: "pokemons/:id", element: <SelectedPokemonPage/>},
+            {path: "forms/:id", element: <FormsPage/>},
+            {path: "favourites", element: <FavouritePokemonsPage/>},
             {path: "search/:search_option", element: <SearchPage/>},
-            {path: "forms/:id", element: <FormsPage/>}
         ],
     },
 ]

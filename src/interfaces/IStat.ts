@@ -1,6 +1,6 @@
 export interface IStat {
     stat: {
-            name: string
-        },
+        name: string
+    },
     base_stat: number
 }

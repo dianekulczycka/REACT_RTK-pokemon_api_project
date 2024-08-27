@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 
 const ErrorPage: FC = () => {
     return (
-        <div>
-            <h1> Sorry! Not found </h1>
-            <h2> Use menu to go back </h2>
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <h1 className="text-danger"> Sorry! Not found </h1>
+            <h2 className="text-danger"> Use menu to go back </h2>
         </div>
     );
 };

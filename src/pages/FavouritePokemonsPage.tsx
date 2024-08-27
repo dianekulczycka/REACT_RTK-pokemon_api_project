@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import FavouritePokemonsComponent from "../components/favourites/FavouritePokemonsComponent";
 
-const FavouritePokemonsPage = () => {
+const FavouritePokemonsPage: FC = () => {
     return <FavouritePokemonsComponent/>
 };
 

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {NavLink} from 'react-router-dom';
 import {IPokemon} from '../../interfaces/IPokemon';
+import SearchResultPokemon from "./SearchResultPokemon";
 
 interface IProps {
     searchResults: IPokemon[];
@@ -8,22 +8,12 @@ interface IProps {
 
 const SearchResultComponent: FC<IProps> = ({searchResults}) => {
     return (
-        <div>
-            <h2 className="m-2">results:</h2>
+        <div className="d-flex justify-content-center align-items-center flex-column m-2">
+            <h2>results:</h2>
             {
                 searchResults.length > 0 ?
                     (
-                        searchResults.map(pokemon => (
-                                <div key={pokemon.id}
-                                     className="d-flex justify-content-center align-items-center flex-column m-2">
-                                    <NavLink
-                                        className="link-danger"
-                                        to={`/pokemons/${pokemon.id}`}>
-                                        {pokemon.name}
-                                    </NavLink>
-                                </div>
-                            )
-                        )
+                        searchResults.map(({id, name}) => <SearchResultPokemon key={id} id={id} name={name}/>)
                     )
                     :
                     <p className="d-flex justify-content-center align-items-center">no results :(</p>

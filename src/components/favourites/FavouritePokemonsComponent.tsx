@@ -11,7 +11,7 @@ const FavouritePokemonsComponent: FC = () => {
             <RevokeAllFavouritesBtn/>
             <h2 className="text-danger"> Favourites: </h2>
             {
-                favourites.map(({id, name}) => <FavouritePokemonComponent name={name} id={id}/>)
+                favourites.map(({id, name}) => <FavouritePokemonComponent key={id} name={name} id={id}/>)
             }
         </div>
     );
