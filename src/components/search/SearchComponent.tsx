@@ -8,7 +8,8 @@ import {IPokemon} from '../../interfaces/IPokemon';
 import {useAppSelector} from "../../store/helpers/useAppSelector";
 import SearchFormComponent from './SearchFormComponent';
 import SearchResultComponent from './SearchResultComponent';
-import {IAbility} from "../../interfaces/IAbility";
+import {ITypesResponse} from "../../interfaces/ITypesResponse";
+import {IAbilitiesResponse} from "../../interfaces/IAbilitiesResponse";
 
 
 const SearchComponent: React.FC = () => {
@@ -23,23 +24,26 @@ const SearchComponent: React.FC = () => {
         }
     }, [dispatch, pokemonsPaginated.length, search_option]);
 
-    const getSearchResults = async (searchQuery: string) => {
+    const getSearchResults = async (searchQuery: string): Promise<void> => {
         try {
             let results: IPokemon[] = [];
             switch (search_option) {
                 case "ability":
-                    const abilityResult: IAbility = await getAbility(searchQuery);
-                    results = abilityResult.ability.map(( ability ) => {
-                        console.log(ability);
-                        const id = ability.pokemon.url.split('/')[6];
-                        return { id: +id, name: ability.name };
+                    const abilityResult: IAbilitiesResponse = await getAbility(searchQuery);
+                    console.log(abilityResult);
+                    results = abilityResult.pokemon.map(result => {
+                        console.log(result);
+                        const urlParts: string[] = result.pokemon.url.split('/');
+                        const id: number = +urlParts[urlParts.length - 2];
+                        return {id: +id, name: result.pokemon.name};
                     });
                     break;
                 case "type":
-                    const typeResult = await getType(searchQuery);
-                    results = typeResult.pokemon.map(pokemon => {
-                        const id = pokemon.pokemon.url.split('/')[6];
-                        return {id: +id, name: pokemon.pokemon.name};
+                    const typeResult: ITypesResponse = await getType(searchQuery);
+                    results = typeResult.pokemon.map(result => {
+                        const urlParts: string[] = result.pokemon.url.split('/');
+                        const id: number = +urlParts[urlParts.length - 2];
+                        return {id, name: result.pokemon.name};
                     });
                     break;
                 default:
@@ -55,13 +59,19 @@ const SearchComponent: React.FC = () => {
     const handleSearch = (query: string) => {
         switch (search_option) {
             case "name":
-                const clearQuery = query.trim().toLowerCase();
-                const filteredPokemons = pokemonsPaginated.filter(pokemon =>
+                const clearQuery: string = query.trim().toLowerCase();
+                const filteredPokemons: IPokemon[] = pokemonsPaginated.filter(pokemon =>
                     pokemon.name.toLowerCase().includes(clearQuery)
                 );
                 dispatch(pokemonActions.setSearchResults(filteredPokemons));
                 break;
             case "ability":
+                if (query) {
+                    getSearchResults(query);
+                } else {
+                    dispatch(pokemonActions.clearSearchResults());
+                }
+                break;
             case "type":
                 if (query) {
                     getSearchResults(query);

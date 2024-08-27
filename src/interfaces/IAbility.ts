@@ -6,5 +6,5 @@ export interface IAbility {
                 url: string;
             };
         }[];
-    };
+    }
 }
